@@ -13,7 +13,9 @@ class DeckController extends Controller
      */
     public function index()
     {
-        //
+        return view('deck.index', [
+            'decks' => auth()->user()->decks,
+        ]);
     }
 
     /**
@@ -21,7 +23,7 @@ class DeckController extends Controller
      */
     public function create()
     {
-        //
+        return view('deck.create');
     }
 
     /**
@@ -29,7 +31,9 @@ class DeckController extends Controller
      */
     public function store(StoreDeckRequest $request)
     {
-        //
+        auth()->user()->decks()->create($request->validated());
+
+        return redirect()->route('deck.index')->with('success', 'Deck created successfully.');
     }
 
     /**
@@ -37,7 +41,9 @@ class DeckController extends Controller
      */
     public function show(Deck $deck)
     {
-        //
+        return view('deck.show', [
+            'deck' => $deck,
+        ]);
     }
 
     /**
@@ -45,7 +51,9 @@ class DeckController extends Controller
      */
     public function edit(Deck $deck)
     {
-        //
+        return view('deck.edit', [
+            'deck' => $deck,
+        ]);
     }
 
     /**
@@ -53,7 +61,9 @@ class DeckController extends Controller
      */
     public function update(UpdateDeckRequest $request, Deck $deck)
     {
-        //
+        $deck->update($request->validated());
+
+        return redirect()->route('deck.index')->with('success', 'Deck updated successfully.');
     }
 
     /**
@@ -61,6 +71,8 @@ class DeckController extends Controller
      */
     public function destroy(Deck $deck)
     {
-        //
+        $deck->delete();
+
+        return redirect()->route('deck.index')->with('success', 'Deck deleted successfully.');
     }
 }

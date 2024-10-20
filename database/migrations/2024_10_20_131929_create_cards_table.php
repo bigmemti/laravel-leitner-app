@@ -22,7 +22,7 @@ return new class extends Migration
             $table->tinyInteger('difficulty', unsigned: true);
             $table->tinyInteger('failed_reviews', unsigned: true)->default(0);
             $table->tinyInteger('success_reviews', unsigned: true)->default(0);
-            $table->text('user_notes');
+            $table->text('user_notes')->nullable();
             $table->timestamps();
         });
     }

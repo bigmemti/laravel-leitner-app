@@ -20,6 +20,13 @@
                             <x-input-error :messages="$errors->get('name')" class="mt-2" />
                         </div>
 
+                        <!-- description -->
+                        <div class="flex flex-col gap-4 mb-6">
+                            <x-input-label for="name" :value="__('Description')" />
+                            <textarea id="description" class="block mt-1 w-full h-9 px-2 border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm" name="description">{{ old('description', $deck->description) }}</textarea>
+                            <x-input-error :messages="$errors->get('description')" class="mt-2" />
+                        </div>
+
                         <div class="flex items-center justify-end mt-4">
 
                             <x-primary-button class="ms-3">

@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Deck extends Model
 {
     protected $fillable = [
-        'name'
+        'name',
+        'description',
     ];
 }

@@ -13,6 +13,10 @@
                         <h2>{{ __('Name') }} :</h2>
                         <span>{{ $deck->name }}</span>
                     </div>
+                    <div class="flex gap-4">
+                        <h2>{{ __('Description') }} :</h2>
+                        <span>{{ $deck->description }}</span>
+                    </div>
                     <div>
                         <a href="{{ route('deck.edit', ['deck' => $deck]) }}" class="text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100">
                             {{ __('Edit') }}

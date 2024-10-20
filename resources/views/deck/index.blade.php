@@ -11,7 +11,7 @@
                 <div class="p-6 text-gray-900 dark:text-gray-100">
                     <div class="flex mb-12">
                         <a href="{{ route('deck.create') }}" class="py-2 px-4 rounded-lg bg-green-900">
-                            create a new deck +
+                            create a new deck <i class="fa-duotone fa-solid fa-plus text-xs fa-beat-fade"></i>
                         </a>
                     </div>
                     <table class="w-full">

@@ -22,7 +22,8 @@ class StoreDeckRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required|string|min:4|max:255'
+            'name' => 'required|string|min:4|max:255',
+            'description' => 'string|nullable|max:2048'
         ];
     }
 }

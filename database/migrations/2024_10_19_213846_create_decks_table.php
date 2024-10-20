@@ -16,6 +16,8 @@ return new class extends Migration
             $table->id();
             $table->foreignIdFor(User::class)->constrained();
             $table->string('name', 255);
+            $table->boolean('shared')->default(0);
+            $table->text('description');
             $table->timestamps();
         });
     }

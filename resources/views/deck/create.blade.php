@@ -15,7 +15,7 @@
                         <!-- Name -->
                         <div class="flex flex-col gap-4 mb-6">
                             <x-input-label for="name" :value="__('Name')" />
-                            <x-text-input id="name" class="block mt-1 w-full h-9 px-2" type="name" name="name" :value="old('name')" required autofocus />
+                            <x-text-input id="name" class="block mt-1 w-full h-9 px-2" type="text" name="name" :value="old('name')" required autofocus />
                             <x-input-error :messages="$errors->get('name')" class="mt-2" />
                         </div>
 

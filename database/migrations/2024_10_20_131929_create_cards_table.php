@@ -1,5 +1,6 @@
 <?php
 
+use App\Enums\CardPlace;
 use App\Models\Deck;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
@@ -18,11 +19,11 @@ return new class extends Migration
             $table->string('query', 255);
             $table->string('answer', 255);
             $table->timestamp('reviewed_at')->nullable();
-            $table->tinyInteger('place', unsigned: true);
+            $table->tinyInteger('place', unsigned: true)->default(CardPlace::BOX1);
             $table->tinyInteger('difficulty', unsigned: true);
             $table->tinyInteger('failed_reviews', unsigned: true)->default(0);
             $table->tinyInteger('success_reviews', unsigned: true)->default(0);
-            $table->text('user_notes')->nullable();
+            $table->text('note')->nullable();
             $table->timestamps();
         });
     }

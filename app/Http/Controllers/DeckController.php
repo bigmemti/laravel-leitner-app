@@ -75,4 +75,10 @@ class DeckController extends Controller
 
         return redirect()->route('deck.index')->with('success', 'Deck deleted successfully.');
     }
+
+    public function review(Deck $deck){
+        return view('deck.review', [
+            'card' => $deck->firstReviewableCard()
+        ]);
+    }
 }

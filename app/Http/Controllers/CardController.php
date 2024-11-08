@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\CardPlace;
+use App\Http\Requests\ReviewCardRequest;
 use App\Models\Card;
 use App\Http\Requests\StoreCardRequest;
 use App\Http\Requests\UpdateCardRequest;
@@ -79,5 +81,19 @@ class CardController extends Controller
         $card->delete();
 
         return redirect()->route('deck.card.index', ['deck' => $deck])->with('success', __('Card deleted successfully.'));
+    }
+
+
+
+    public function review(ReviewCardRequest $request, Card $card){
+        $card->update([
+            'failed_reviews' => ($request->status == 'failed') ? $card->failed_reviews + 1 : $card->failed_reviews,
+            'success_reviews' => ($request->status == 'success') ? $card->success_reviews + 1 : $card->success_reviews,
+            'reviewed_at' => now(),
+            'difficulty' => $request->difficulty,
+            'place' => $card->nextPlace(),
+        ]);
+
+        return redirect()->route('deck.review', ['deck' => $card->deck])->with('success', __('Card reviewed successfully.'));
     }
 }

@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Enums\CardDifficulty;
 use App\Enums\CardPlace;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Model;
 
 class Card extends Model
@@ -26,5 +27,25 @@ class Card extends Model
 
     public function deck(){
         return $this->belongsTo(Deck::class);
+    }
+
+    public function nextPlace(): CardPlace{
+        return match($this->place){
+            CardPlace::BOX1 => CardPlace::BOX2,
+            CardPlace::BOX2 => CardPlace::BOX4,
+            CardPlace::BOX4 => CardPlace::BOX8,
+            CardPlace::BOX8 => CardPlace::BOX16,
+            CardPlace::BOX16 => CardPlace::BOX_PASS
+        };
+    }
+
+    public function difficultyText(): Attribute{
+        return Attribute::make(
+            get: function(mixed $value, array $attributes){return match($attributes['difficulty']){
+                1 => 'easy',
+                2 => 'medium',
+                3 => 'hard',
+            };}
+        );
     }
 }

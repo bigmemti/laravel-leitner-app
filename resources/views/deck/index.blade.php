@@ -41,6 +41,9 @@
                                             <a href="{{ route('deck.edit', $deck) }}" class="text-sm font-medium text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100">
                                                 {{ __('Edit') }}
                                             </a>
+                                            <a href="{{ route('deck.review', $deck) }}" class="text-sm font-medium text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100">
+                                                {{ __('Review') }}
+                                            </a>
                                             <form action="{{ route('deck.destroy', $deck) }}" method="POST" class="inline-flex gap-x-1">
                                                 @csrf
                                                 @method('DELETE')

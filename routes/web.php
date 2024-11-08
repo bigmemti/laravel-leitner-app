@@ -19,6 +19,9 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
     Route::resource('deck', DeckController::class);
+    Route::get('/deck/{deck}/review', [DeckController::class, 'review'])->name('deck.review');
+    Route::patch('/card/{card}/review', [CardController::class, 'review'])->name('card.review');
+
     Route::resource('deck.card', CardController::class)->shallow();
 });
 

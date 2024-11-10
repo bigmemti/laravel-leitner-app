@@ -91,7 +91,7 @@ class CardController extends Controller
             'success_reviews' => ($request->status == 'success') ? $card->success_reviews + 1 : $card->success_reviews,
             'reviewed_at' => now(),
             'difficulty' => $request->difficulty,
-            'place' => $card->nextPlace(),
+            'place' => ($request->status == 'failed')? CardPlace::BOX1 : $card->nextPlace(),
         ]);
 
         return redirect()->route('deck.review', ['deck' => $card->deck])->with('success', __('Card reviewed successfully.'));

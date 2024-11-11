@@ -39,7 +39,9 @@ class CardController extends Controller
     {
         $deck->cards()->create($request->validated());
 
-        return redirect()->route('deck.card.index', ['deck' => $deck])->with('success', __('Card created successfully.'));
+        $request->session()->put('add_another', $request->has('add_another'));
+
+        return ($request->add_another) ? redirect()->back() : redirect()->route('deck.card.index', ['deck' => $deck])->with('success', __('Card created successfully.'));
     }
 
     /**

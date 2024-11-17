@@ -41,10 +41,10 @@ class Card extends Model
 
     public function difficultyText(): Attribute{
         return Attribute::make(
-            get: function(mixed $value, array $attributes){return match($attributes['difficulty']){
-                1 => 'easy',
-                2 => 'medium',
-                3 => 'hard',
+            get: function(mixed $value, array $attributes){return match((int)($attributes['difficulty'])){
+                CardDifficulty::EASY => 'easy',
+                CardDifficulty::MEDIUM => 'medium',
+                CardDifficulty::HARD => 'hard',
             };}
         );
     }

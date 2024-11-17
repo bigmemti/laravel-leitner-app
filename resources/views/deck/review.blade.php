@@ -33,7 +33,13 @@
                             </template>
                             <div class="text-xs -mb-4 mt-4 dark:bg-gray-800 p-2 rounded-t-lg flex gap-4">
                                 <span class="text-green-500">{{ _('success') }} : {{ $card->success_reviews }}</span>
-                                <span>{{ _('difficulty') }} : {{ $card->difficulty_text }}</span>
+                                <span>{{ _('difficulty') }} : @if ($card->difficulty == App\Enums\CardDifficulty::EASY)
+                                    {{ __('Eazy') }}
+                                @elseif($card->difficulty == App\Enums\CardDifficulty::MEDIUM)
+                                    {{ __('Medium') }}
+                                @elseif($card->difficulty == App\Enums\CardDifficulty::HARD)
+                                    {{ __('Hard') }}
+                                @endif</span>
                                 <span class="text-red-500">{{ __('failed') }} : {{ $card->failed_reviews }}</span>
                             </div>
                         </div>

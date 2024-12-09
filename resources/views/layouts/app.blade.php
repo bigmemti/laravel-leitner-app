@@ -11,24 +11,8 @@
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
 
-        <!-- Scripts -->@import 'fontawesome.css';
-/* @import 'brands.css'; */
-/* @import 'solid.css'; */
-/* @import 'regular.css';
-@import 'light.css';
-@import 'thin.css';
-@import 'duotone.css';
-@import 'duotone-regular.css';
-@import 'duotone-light.css';
-@import 'duotone-thin.css';
-@import 'sharp-solid.css';
-/* @import 'sharp-regular.css'; */
-@import 'sharp-light.css';
-/* @import 'sharp-thin.css';
-@import 'sharp-duotone-solid.css';
-@import 'sharp-duotone-regular.css';
-@import 'sharp-duotone-light.css';
-@import 'sharp-duotone-thin.css'; */ 
+        <!-- Scripts -->
+        @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
     <body class="font-sans antialiased">
         <div class="min-h-screen bg-gray-100 dark:bg-gray-900">

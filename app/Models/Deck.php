@@ -28,7 +28,7 @@ class Deck extends Model
         return $this->cards()
             ->where(function($query) use ($now){
                 $query->whereNull('reviewed_at')
-                ->where('created_at', '<=', $now->copy()->subDays(1));
+                ->where('created_at', '<=', $now->copy()->today()->startOfDay());
 
                 $query->orWhere(function ($subQuery) use ($now){
                     $subQuery->whereNotNull('reviewed_at')

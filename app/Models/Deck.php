@@ -32,7 +32,7 @@ class Deck extends Model
 
                 $query->orWhere(function ($subQuery) use ($now){
                     $subQuery->whereNotNull('reviewed_at')
-                    ->where('reviewed_at', '<=', DB::raw("DATE_SUB(CURDATE(), INTERVAL place DAY)"));
+                    ->where('reviewed_at', '<=', DB::raw("DATE_SUB(CURDATE(), INTERVAL (place - 1) DAY)"));
                 });})
             ->where('place', '!=', CardPlace::BOX_PASS)
             ->inRandomOrder();

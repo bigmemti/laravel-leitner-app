@@ -8,8 +8,9 @@
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 text-gray-900 dark:text-gray-100 flex flex-col items-center gap-4" x-data="{ open : false }">
+                <div class="p-6 text-gray-900 dark:text-gray-100 flex flex-col items-center gap-4" x-data="{ open : false, time : 0, timer : null, startTimer() {this.time = 0; if (!this.timer) { this.timer = setInterval(() => { this.time++;}, 1000)}}, stopTimer() {clearInterval(this.timer)}}" x-init="startTimer()">
                     @if ($card)
+                        <div  class="text-center w-80 rounded-xl py-1.5"> <span x-text="time"></span> {{ __('seconds') }} </div>
                         <div class="w-80 dark:bg-gray-900 p-4 flex flex-col items-center rounded-xl">
                             <div class="text-xs mb-4 -mt-4 dark:bg-gray-800 p-2 rounded-b-lg">
                                 palce: box {{ $card->place }}
@@ -44,7 +45,7 @@
                             </div>
                         </div>
                         <div class="text-center">
-                            <button class="py-2 px-6 rounded-lg my-4 dark:bg-gray-900" x-show='!open' @click="open = true">{{ __('Show Answer') }}</button>
+                            <button class="py-2 px-6 rounded-lg my-4 dark:bg-gray-900" x-show='!open' @click="open = true; stopTimer()">{{ __('Show Answer') }}</button>
                             <form x-show="open" action="{{ route('card.review', ['card' => $card]) }}" method="POST">
                                 @method('PATCH')
                                 @csrf

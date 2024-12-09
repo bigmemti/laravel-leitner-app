@@ -24,6 +24,15 @@
                                     {{ __('name') }}
                                 </th>
                                 <th class="border">
+                                    {{ __('card counts') }}
+                                </th>
+                                <th class="border">
+                                    {{ __('status') }}
+                                </th>
+                                <th class="border">
+                                    {{ __('reviewable counts') }}
+                                </th>
+                                <th class="border">
                                     {{ __('actions') }}
                                 </th>
                             </tr>
@@ -33,6 +42,9 @@
                                 <tr>
                                     <td class="text-center border">{{ $deck->id }}</td>
                                     <td class="text-center border">{{ $deck->name }}</td>
+                                    <td class="text-center border">{{ $deck->cards()->count() }}</td>
+                                    <td class="text-center border">{{ implode('-', $deck->status()->toArray()) }}</td>
+                                    <td class="text-center border">{{ $deck->countReviewableCards() }}</td>
                                     <td class="text-center border">
                                         <div class="flex gap-x-2 justify-center">
                                             <a href="{{ route('deck.show', $deck) }}" class="text-sm font-medium text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100">

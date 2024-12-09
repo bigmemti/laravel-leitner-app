@@ -78,7 +78,7 @@ class DeckController extends Controller
 
     public function review(Deck $deck){
         return view('deck.review', [
-            'card' => $deck->firstReviewableCard()
+            'card' => $deck->firstRandomReviewableCard()
         ]);
     }
 }

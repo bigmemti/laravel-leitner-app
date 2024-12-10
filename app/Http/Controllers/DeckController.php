@@ -14,7 +14,7 @@ class DeckController extends Controller
     public function index()
     {
         return view('deck.index', [
-            'decks' => auth()->user()->decks,
+            'decks' => auth()->user()->decks()->paginate(5),
         ]);
     }
 

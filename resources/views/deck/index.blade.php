@@ -14,7 +14,7 @@
                             create a new deck <i class="fa-duotone fa-solid fa-plus text-xs fa-beat-fade"></i>
                         </a>
                     </div>
-                    <table class="w-full">
+                    <table class="w-full hidden lg:table">
                         <thead>
                             <tr>
                                 <th class="border">
@@ -69,6 +69,40 @@
                             @endforeach
                         </tbody>
                     </table>
+                    <div class="flex flex-col gap-4  lg:hidden">
+                        @foreach($decks as $deck)
+                            <div class="flex bg-gray-900 p-3 rounded-lg">
+                                <div class="flex flex-col flex-1">
+                                    <div> {{ __('id') }} : {{ $deck->id }}</div>
+                                    <div> {{ __('name') }} : {{ $deck->name }}</div>
+                                    <div> {{ __('card counts') }} : {{ $deck->cards()->count() }}</div>
+                                    <div> {{ __('status') }} : {{ implode('-', $deck->status()->toArray()) }}</div>
+                                    <div> {{ __('reviewable counts') }} : {{ $deck->countReviewableCards() }}</div>
+                                </div>
+                                <div class="flex flex-col gap-2 justify-center items-stretch">
+                                    <a href="{{ route('deck.show', $deck) }}" class="text-sm font-medium text-gray-500 dark:text-gray-400 dark:bg-gray-800 p-1.5 rounded-lg hover:text-gray-900 dark:hover:text-gray-100">
+                                        <i class="fa-duotone fa-solid fa-eye"></i>
+                                    </a>
+                                    <a href="{{ route('deck.edit', $deck) }}" class="text-sm flex items-center justify-center font-medium text-gray-500 dark:text-gray-400 dark:bg-gray-800 p-1.5 rounded-lg hover:text-gray-900 dark:hover:text-gray-100">
+                                        <i class="fa-duotone fa-solid fa-pen"></i>
+                                    </a>
+                                    <a href="{{ route('deck.review', $deck) }}" class="text-sm font-medium text-gray-500 dark:text-gray-400 dark:bg-gray-800 p-1.5 rounded-lg hover:text-gray-900 dark:hover:text-gray-100">
+                                        <i class="fa-duotone fa-solid fa-cards-blank"></i>
+                                    </a>
+                                    <form action="{{ route('deck.destroy', $deck) }}" method="POST" class="flex items-center justify-center gap-x-1 dark:bg-gray-800 p-1.5 rounded-lg ">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="text-sm font-medium text-red-500 dark:text-red-400 hover:text-red-700 ">
+                                            <i class="fa-duotone fa-solid fa-trash"></i>
+                                        </button>
+                                    </form>
+                                </div>
+                            </div>
+                        @endforeach
+                    </div>
+                    <div class="mt-4">
+                        {{ $decks->links() }}
+                    </div>
                 </div>
             </div>
         </div>
